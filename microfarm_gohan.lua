@@ -1,4 +1,4 @@
-print("V1.0")
+print("V1.1----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -92,6 +92,13 @@ while _G.farm and task.wait() do
         teleportEvent:InvokeServer("Earth")
     end
 
+    coroutine.wrap(function() 
+            while _G.farm and task.wait() do
+                chargeEvent:InvokeServer("Blacknwhite27")
+                task.wait()
+            end
+    end)()
+    
     if activeQuest.Value == "" then
         getQuest("Kid Nohag")
     end
