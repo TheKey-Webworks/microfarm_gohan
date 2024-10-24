@@ -1,4 +1,4 @@
-print("V1.2----------------")
+print("V1.3----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -63,7 +63,7 @@ local function farmNPC(npc)
                     if not eHRP then break end
                     if not cHRP then cHRP = c:FindFirstChild("HumanoidRootPart") or c:WaitForChild("HumanoidRootPart") end
                     cHRP.CFrame = eHRP.CFrame
-                    task.wait()
+                    task.wait(.5)
                 end
             end)()
 
