@@ -1,4 +1,4 @@
-print("V1.1----------------")
+print("V1.2----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -77,8 +77,7 @@ local function farmNPC(npc)
     end
 end
 
-_G.farm = true
-_G.rebirth = true
+
 
 -- main loop
 while _G.farm and task.wait() do
