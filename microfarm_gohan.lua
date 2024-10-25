@@ -1,4 +1,4 @@
-print("V1.4----------------")
+print("V1.41----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -39,6 +39,8 @@ end
 
 -- función para matar a gohan
 local function farmNPC(npc)
+    print("Blocking")
+    game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
     local gohan = workspace.Living:WaitForChild(npc)
     if not gohan or not gohan:FindFirstChild("Humanoid") then
         return 
@@ -72,8 +74,7 @@ local function farmNPC(npc)
             for i = 1, 4 do
                 punchEvent:FireServer("Blacknwhite27", i)
             end
-            print("Blocking")
-            game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
+
             task.wait()
         end
     end
