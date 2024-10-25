@@ -1,4 +1,4 @@
-print("V1.42----------------")
+print("V1.42f----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -49,7 +49,7 @@ local function farmNPC(npc)
         while _G.farm and gohan.Humanoid.Health > 0 and task.wait() do
 
             coroutine.wrap(function()
-                    while _G.farm and task.wait do
+                    while _G.farm and task.wait() do
                       print("Blocking")
                       game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
                     end
