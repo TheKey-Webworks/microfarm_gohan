@@ -1,4 +1,4 @@
-print("V1.44----------------")
+print("V1.44f----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -49,7 +49,7 @@ local function farmNPC(npc)
 
             -- Bloqueo
             coroutine.wrap(function()
-                while _G.farm and task.wait() do
+                while _G.farm and task.wait(2) do
                     print("Blocking")
                     game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
                 end
