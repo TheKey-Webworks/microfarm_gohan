@@ -1,4 +1,4 @@
-print("V1.43----------------")
+print("V1.44----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -72,7 +72,7 @@ local function farmNPC(npc)
                     if not cHRP then cHRP = c:FindFirstChild("HumanoidRootPart") or c:WaitForChild("HumanoidRootPart") end
                     local direction = (eHRP.Position - cHRP.Position).unit -- Obtiene la dirección normalizada
                     cHRP.CFrame = CFrame.new(eHRP.Position + direction) * CFrame.Angles(0, math.pi / 2, 0) -- Ajusta la posición y la orientación
-                    task.wait(.5)
+                    task.wait()
                 end
             end)()
 
