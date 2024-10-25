@@ -1,4 +1,4 @@
-print("V1.3----------------")
+print("V1.4----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -62,7 +62,8 @@ local function farmNPC(npc)
                 while _G.farm and gohan.Humanoid.Health > 0 and task.wait() do
                     if not eHRP then break end
                     if not cHRP then cHRP = c:FindFirstChild("HumanoidRootPart") or c:WaitForChild("HumanoidRootPart") end
-                    cHRP.CFrame = eHRP.CFrame
+                    local direction = (eHRP.Position - cHRP.Position).unit -- Obtiene la dirección normalizada
+                    cHRP.CFrame = CFrame.new(eHRP.Position + direction) * CFrame.Angles(0, math.pi / 2, 0) -- Ajusta la posición y la orientación
                     task.wait(.5)
                 end
             end)()
@@ -71,7 +72,8 @@ local function farmNPC(npc)
             for i = 1, 4 do
                 punchEvent:FireServer("Blacknwhite27", i)
             end
-
+            print("Blocking")
+            game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
             task.wait()
         end
     end
