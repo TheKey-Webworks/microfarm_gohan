@@ -33,14 +33,14 @@ local function farmNPC(npc)
     if not gohan or not gohan:FindFirstChild("Humanoid") then return end
 
     if gohan.Humanoid.Health > 0 then
-        while _G.farm and gohan.Humanoid.Health > 0 and task.wait() do
+        while _G.farm and gohan.Humanoid.Health > 0 and task.wait(1) do
 
             -- Bloqueo optimizado para menos espera
-            coroutine.wrap(function()
-                while _G.farm and task.wait(5) do
-                    game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
-                end
-            end)()
+         --   coroutine.wrap(function()
+             --   while _G.farm and task.wait(5) do
+               --     game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
+               -- end
+          --  end)()
 
             -- Movimiento al NPC solo si está fuera del rango de ataque
             coroutine.wrap(function()
@@ -62,7 +62,7 @@ local function farmNPC(npc)
             -- Ataque en bucle más frecuente
             for i = 1, 4 do  -- Incrementa el número de ataques
                 punchEvent:FireServer("Blacknwhite27", i)
-                task.wait(0.2)  -- Reducción del tiempo entre golpes
+                task.wait(1)  -- Reducción del tiempo entre golpes
             end
         end
     end
