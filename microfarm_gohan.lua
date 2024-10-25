@@ -1,4 +1,4 @@
-print("V1.41----------------")
+print("V1.42----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -39,8 +39,7 @@ end
 
 -- función para matar a gohan
 local function farmNPC(npc)
-    print("Blocking")
-    game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
+  
     local gohan = workspace.Living:WaitForChild(npc)
     if not gohan or not gohan:FindFirstChild("Humanoid") then
         return 
@@ -48,6 +47,14 @@ local function farmNPC(npc)
 
     if gohan.Humanoid.Health > 0 then
         while _G.farm and gohan.Humanoid.Health > 0 and task.wait() do
+
+            coroutine.wrap(function()
+                    while _G.farm and task.wait do
+                      print("Blocking")
+                      game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
+                    end
+                end
+            end)()
             
             -- mover el personaje hasta gohan
             coroutine.wrap(function()
