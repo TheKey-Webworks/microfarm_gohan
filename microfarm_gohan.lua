@@ -1,20 +1,19 @@
-print("V1.42hf----------------")
+print("V1.43----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
 -- id del usuario
 local userId = Player.UserId
 
---datos del usuario
+-- datos del usuario
 local playerData = ReplicatedStorage.Datas[userId]
 
---datos de las misiones
+-- datos de las misiones
 local activeQuest = playerData.Quest
 local questProgress = playerData.QuestProgress
 
---eventos
+-- eventos
 local teleportEvent = ReplicatedStorage.Package.Events.TP
 local getQuestEvent = ReplicatedStorage.Package.Events.Qaction
 local punchEvent = ReplicatedStorage.Package.Events.p
@@ -23,7 +22,7 @@ local chargeEvent = ReplicatedStorage.Package.Events.cha
 local mel = ReplicatedStorage.Package.Events.mel
 
 -- función para obtener el character
-local function getCharacter () 
+local function getCharacter() 
     local c = Player.Character or Player.CharacterAdded:Wait()
     return c
 end
@@ -48,13 +47,14 @@ local function farmNPC(npc)
     if gohan.Humanoid.Health > 0 then
         while _G.farm and gohan.Humanoid.Health > 0 and task.wait() do
 
+            -- Bloqueo
             coroutine.wrap(function()
-                    while _G.farm and task.wait() do
-                      print("Blocking")
-                      game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
-                    end
+                while _G.farm and task.wait() do
+                    print("Blocking")
+                    game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
+                end
             end)()
-            
+
             -- mover el personaje hasta gohan
             coroutine.wrap(function()
                 -- character del player
@@ -76,6 +76,9 @@ local function farmNPC(npc)
                 end
             end)()
 
+            -- Esperar a que el personaje esté en posición antes de atacar
+            task.wait(0.5) -- Ajusta el tiempo si es necesario para asegurarte de que el bloqueo se complete
+
             -- atacar
             for i = 1, 4 do
                 punchEvent:FireServer("Blacknwhite27", i)
@@ -85,8 +88,6 @@ local function farmNPC(npc)
         end
     end
 end
-
-
 
 -- main loop
 while _G.farm and task.wait() do
@@ -101,10 +102,10 @@ while _G.farm and task.wait() do
     end
 
     coroutine.wrap(function() 
-            while _G.farm and task.wait() do
-                chargeEvent:InvokeServer("Blacknwhite27")
-                task.wait()
-            end
+        while _G.farm and task.wait() do
+            chargeEvent:InvokeServer("Blacknwhite27")
+            task.wait()
+        end
     end)()
     
     if activeQuest.Value == "" then
