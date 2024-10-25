@@ -1,4 +1,4 @@
-print("V1.42f----------------")
+print("V1.42hf----------------")
 
 local Player = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -53,7 +53,6 @@ local function farmNPC(npc)
                       print("Blocking")
                       game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
                     end
-                end
             end)()
             
             -- mover el personaje hasta gohan
